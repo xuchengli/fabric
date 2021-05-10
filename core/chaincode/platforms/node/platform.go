@@ -191,6 +191,7 @@ func (nodePlatform *Platform) GenerateDockerBuild(path string, code []byte, tw *
 	codepackage := bytes.NewReader(code)
 	binpackage := bytes.NewBuffer(nil)
 	err := util.DockerBuild(util.DockerBuildOptions{
+		Image:        "harbor.zhigui.com/bcs/ccenv:node-1.0.0",
 		Cmd:          fmt.Sprint("cp -R /chaincode/input/src/. /chaincode/output && cd /chaincode/output && npm install --production"),
 		InputStream:  codepackage,
 		OutputStream: binpackage,
